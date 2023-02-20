@@ -1,0 +1,24 @@
+{
+  "name": "todolist_node",
+  "version": "1.0.0",
+  "description": "Une vraie liste",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "author": "VAUODN Mathieu",
+  "license": "ISC",
+  "devDependencies": {
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
+    "jsonwebtoken": "^9.0.0",
+    "mariadb": "^3.1.0",
+    "sequelize": "^6.28.0"
+  }
+}
