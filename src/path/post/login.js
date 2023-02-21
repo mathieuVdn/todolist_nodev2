@@ -2,38 +2,38 @@ const bcrypt = require('bcrypt');
 const privateKey = require('../../authentification/key')
 const jwt = require('jsonwebtoken')
 
-module.exports = (app, Users, Tasks, TaskLists, UserTasksLists) => {
-    app.post('/login', (req, res) => {
-        try {
-            const mail = req.body.mail
-            const password = req.body.password
-            Users.findOne({
-                where: {
-                    mail: mail
-                }
+
+module.exports = (app,Users)=>{
+    app.post("/login",(req,res)=>{
+        const mail = req.body.mail
+        const password = req.body.password
+        // ca fais un where à l'interieur va mechercher dans la table celui qui as le mm email
+        console.log(mail)
+        Users.findOne({
+            where: {mail : mail}
+        }).then(user => {
+            console.log(user)
+            if(!user){
+                return res.status(404).json({ message : " le user avec l'email "+ mail + " n'existe pas"})
             }
-            ).then(user => {
-            if (!user) {
-                    res.status(404).send({message:`Aucun utilisateur avec l'adresse mail ${mail}`})
-                } else {
-                    bcrypt.compare(password, user.password).then(result =>
-                    {console.log(result)
-                        if (result === true) {
-                            const token = jwt.sign({userId: user.id}, privateKey, {expiresIn: '1h'}, (err, token) => {
-                                res.json({token})
-                            })
-                            res.status(201).res.json({message:`${user.mail} Connexion réussie`, token})
-                        } else {
-                            res.status(404).send({message: "Mot de passe incorrect"})
-                        }
-                    })
-                }
-            }
-            )
-        } catch (e) {
-            e.status(500).send(e)
-        }
-        res.json("test de la route login")
-        }
-    )
+            bcrypt.compare(password,user.password)
+                .then(passwordValid => {
+
+                    if(passwordValid === true){
+                        console.log(user.id)
+                        const token = jwt.sign(
+                            {userid : user.id},
+                            privateKey,
+                            {expiresIn: '1h'}
+                        )
+
+                        return res.json({message : `user bien co `, data:user, token})
+                    }else{
+                        return res.json({message : `mdp incorrect` + mail})
+                    }
+                })
+        })
+
+    })
 }
+

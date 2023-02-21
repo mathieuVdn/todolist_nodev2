@@ -1,7 +1,7 @@
 const auth = require('./auth')
 
 module.exports = (app) => {
-    app.get('/test', auth, (req, res) => {
-        res.json("test de la route test")
+    app.get('/test',auth, async (req,res) =>{
+        res.json('route test ok')
     })
 }
