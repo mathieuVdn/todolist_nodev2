@@ -6,11 +6,11 @@ module.exports = (app, Users, Tasks, TaskLists, UserTasksLists) => {
                     id: req.params.id
                 }
             }).then(user => {
-                res.sendStatus(201).send(user)
+                res.sendStatus(201).json(user)
             })
         } catch (e) {
             console.log(e)
-            res.status(500).send(e)
+            res.status(500).json(e)
          }
     })
 };

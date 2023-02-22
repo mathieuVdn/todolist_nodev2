@@ -13,12 +13,12 @@ module.exports = (app, Users, Tasks, TaskLists, UserTasksLists) => {
                     taskListId: TaskLists.id
                 }   )
 
-        res.status(201).send(tasksList)
+        res.status(201).json(tasksList)
             })
         }
         catch (e) {
             console.log(e)
-            res.status(500).send(e)
+            res.status(500).json(e)
         }
     })
 }
