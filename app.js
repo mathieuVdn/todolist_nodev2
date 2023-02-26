@@ -17,20 +17,27 @@ app.use(cors({
 
 app.use(bodyParser.json());
 
-require('./src/path/get/getAll')(app, Users, Tasks, TaskLists, UserTasksLists)
-require('./src/path/get/getUsers')(app, Users, Tasks, TaskLists, UserTasksLists)
-require('./src/path/post/postUser')(app, Users, Tasks, TaskLists, UserTasksLists)
-require('./src/path/post/postTasksList')(app, Users, Tasks, TaskLists, UserTasksLists)
-require('./src/path/post/postTask')(app, Users, Tasks, TaskLists, UserTasksLists)
-require('./src/path/put/putUser')(app, Users, Tasks, TaskLists, UserTasksLists)
-require('./src/path/put/putTasksList')(app, Users, Tasks, TaskLists, UserTasksLists)
-require('./src/path/put/putTask')(app, Users, Tasks, TaskLists, UserTasksLists)
-require('./src/path/delete/deleteUser')(app, Users, Tasks, TaskLists, UserTasksLists)
-require('./src/path/delete/deleteTasksList')(app, Users, Tasks, TaskLists, UserTasksLists)
-require('./src/path/delete/deleteTask')(app, Users, Tasks, TaskLists, UserTasksLists)
-require('./src/path/get/getTakslistByID')(app, Users, Tasks, TaskLists, UserTasksLists)
+require('./src/path/test')(app);
+require('./src/path/get/getTaskByTasklistId')(app, Users, Tasks, TaskLists, UserTasksLists);
+require('./src/path/get/getAll')(app, Users, Tasks, TaskLists, UserTasksLists);
+require('./src/path/get/getUsers')(app, Users, Tasks, TaskLists, UserTasksLists);
+require('./src/path/post/postUser')(app, Users, Tasks, TaskLists, UserTasksLists);
+require('./src/path/post/postTasksList')(app, Users, Tasks, TaskLists, UserTasksLists);
+require('./src/path/post/postTask')(app, Users, Tasks, TaskLists, UserTasksLists);
+require('./src/path/put/putUser')(app, Users, Tasks, TaskLists, UserTasksLists);
+require('./src/path/put/putTasksList')(app, Users, Tasks, TaskLists, UserTasksLists);
+require('./src/path/put/putTask')(app, Users, Tasks, TaskLists, UserTasksLists);
+require('./src/path/delete/deleteUser')(app, Users, Tasks, TaskLists, UserTasksLists);
+require('./src/path/delete/deleteTasksList')(app, Users, Tasks, TaskLists, UserTasksLists);
+require('./src/path/delete/deleteTask')(app, Users, Tasks, TaskLists, UserTasksLists);
+require('./src/path/get/getTakslistByID')(app, Users, Tasks, TaskLists, UserTasksLists);
+
+
+
+
 require('./src/path/post/login')(app, Users, Tasks, TaskLists, UserTasksLists)
-require('./src/authentification/test')(app)
+
+
 
 db.sync()
     .then(_ => {

@@ -10,7 +10,7 @@ module.exports = (app, Users, Tasks, TaskLists, UserTasksLists) => {
                 }
             ]
         }).then(tasklist => {
-            res.send(tasklist)
+            res.json(tasklist)
         })
     })
-}
+};
